@@ -1,5 +1,3 @@
-let versionSelect, colorSelect;
-
 Office.onReady((info) => {
 	if (info.host === Office.HostType.Word) {
 		document.getElementById("sideload-msg").style.display = "none";
@@ -45,10 +43,13 @@ function onGotAllSlices(docdataSlices) {
 
 	document.getElementById("loading_text").innerText = "Converting to ePub "
 
-	setTimeout(() => {
+	axios.post('http://35.178.244.187/ProcessBase64PDF', {
+		doc: PDFDoc
+	}).then(resp => {
 		document.getElementById("loader_parent").style.display = "none";
 		document.getElementById("loading_text").innerText = "Processing Docs "
-	}, 2000)
+		console.log(resp.data);
+	}).catch(console.log);
 
 	// Now all the file content is stored in 'fileContent' variable,
 	// you can do something with it, such as print, fax...
