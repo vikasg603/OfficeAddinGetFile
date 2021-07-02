@@ -7,26 +7,46 @@ Office.onReady((info) => {
 	}
 });
 
-function getDocumentAsCompressed() {
-	document.getElementById("loader_parent").style.display = "flex"
-	Office.context.document.getFileAsync(Office.FileType.Pdf, { sliceSize: 65536 /*64 KB*/ },
-		function (result) {
-			if (result.status == "succeeded") {
-				// If the getFileAsync call succeeded, then
-				// result.value will return a valid File Object.
-				var myFile = result.value;
-				var sliceCount = myFile.sliceCount;
-				var slicesReceived = 0, gotAllSlices = true, docdataSlices = [];
-				//app.showNotification("File size:" + myFile.size + " #Slices: " + sliceCount);
-
-				// Get the file slices.
-				getSliceAsync(myFile, 0, sliceCount, gotAllSlices, docdataSlices, slicesReceived);
+function getFileUrl() {
+	return new Promise((resolve, reject) => {
+		//Get the URL of the current file.
+		Office.context.document.getFilePropertiesAsync(function (asyncResult) {
+			const fileUrl = asyncResult.value.url;
+			if (fileUrl == "") {
+				showMessage("The file hasn't been saved yet. Save the file and try again");
+				reject();
 			}
 			else {
-				app.showNotification("Error:", result.error.message);
-				document.getElementById("loader-parent").style.display = "none";
+				resolve(fileUrl);
 			}
 		});
+	})
+}
+
+function getDocumentAsCompressed() {
+	document.getElementById("loader_parent").style.display = "flex"
+
+	getFileUrl().then(title => {
+		global.title = title;
+		Office.context.document.getFileAsync(Office.FileType.Pdf, { sliceSize: 65536 /*64 KB*/ },
+			function (result) {
+				if (result.status == "succeeded") {
+					// If the getFileAsync call succeeded, then
+					// result.value will return a valid File Object.
+					var myFile = result.value;
+					var sliceCount = myFile.sliceCount;
+					var slicesReceived = 0, gotAllSlices = true, docdataSlices = [];
+					//app.showNotification("File size:" + myFile.size + " #Slices: " + sliceCount);
+	
+					// Get the file slices.
+					getSliceAsync(myFile, 0, sliceCount, gotAllSlices, docdataSlices, slicesReceived);
+				}
+				else {
+					app.showNotification("Error:", result.error.message);
+					document.getElementById("loader-parent").style.display = "none";
+				}
+			});
+	}).catch(err => console.log(err));
 }
 
 function onGotAllSlices(docdataSlices) {
@@ -45,7 +65,8 @@ function onGotAllSlices(docdataSlices) {
 	document.getElementById("loading_text").innerText = "Converting to ePub "
 	axios.defaults.headers.post['Content-Type'] ='application/json';
 	axios.post('https://3.8.40.182/ProcessBase64PDF', {
-		doc: PDFDoc
+		doc: PDFDoc,
+		title: global.title
 	}).then(resp => {
 		document.getElementById("loader_parent").style.display = "none";
 		document.getElementById("loading_text").innerText = "Processing Docs "
