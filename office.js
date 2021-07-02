@@ -9,7 +9,7 @@ Office.onReady((info) => {
 });
 
 function getDocumentAsCompressed() {
-	delete document.getElementById("loader-parent").style.display;
+	delete document.getElementById("loader_parent").style.display;
 	Office.context.document.getFileAsync(Office.FileType.Compressed, { sliceSize: 65536 /*64 KB*/ },
 		function (result) {
 			if (result.status == "succeeded") {

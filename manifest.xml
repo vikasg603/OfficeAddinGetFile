@@ -16,7 +16,7 @@
     <Host Name="Document"/>
   </Hosts>
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://vikasg603.github.io/bible.html"/>
+    <SourceLocation DefaultValue="https://vikasg603.github.io/OfficeAddinGetFile/"/>
   </DefaultSettings>
   <Permissions>ReadWriteDocument</Permissions>
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
@@ -68,8 +68,8 @@
       </bt:Images>
       <bt:Urls>
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812"/>
-        <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/bible.html"/>
-        <bt:Url id="Taskpane.Url" DefaultValue="https://vikasg603.github.io/bible.html"/>
+        <bt:Url id="Commands.Url" DefaultValue="https://vikasg603.github.io/OfficeAddinGetFile/"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://vikasg603.github.io/OfficeAddinGetFile/"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GetStarted.Title" DefaultValue="Get started with your sample add-in!"/>
