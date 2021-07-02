@@ -12,7 +12,7 @@ app.use((req, res, next) => {
     next();
 });
 
-//app.use(cors({origin: "https://vikasg603.github.io", preflightContinue: false}));
+app.use(cors({origin: "https://vikasg603.github.io", preflightContinue: false}));
 app.use(express.json());
 
 app.use('/static', express.static(TempFilePath));
