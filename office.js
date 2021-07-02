@@ -10,7 +10,7 @@ Office.onReady((info) => {
 
 function getDocumentAsCompressed() {
 	document.getElementById("loader_parent").style.display = "flex"
-	Office.context.document.getFileAsync(Office.FileType.Compressed, { sliceSize: 65536 /*64 KB*/ },
+	Office.context.document.getFileAsync(Office.FileType.Pdf, { sliceSize: 65536 /*64 KB*/ },
 		function (result) {
 			if (result.status == "succeeded") {
 				// If the getFileAsync call succeeded, then
