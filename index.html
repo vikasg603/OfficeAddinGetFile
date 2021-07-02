@@ -1,0 +1,108 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+<!-- This file shows how to design a first-run page that provides a welcome screen to the user about the features of the add-in. -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Contoso Task Pane Add-in</title>
+		<!-- Office JavaScript API -->
+		<script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+		<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.min.css" />
+		<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.components.min.css" />
+		<script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
+		<script type="text/javascript" src="bible.js"></script>
+		<!-- Template styles -->
+		<link href="taskpane.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body class="ms-font-m ms-welcome ms-Fabric">
+		<section id="sideload-msg" class="ms-welcome__main">
+			<h2 class="ms-font-xl">Please sideload your add-in to see app body.</h2>
+		</section>
+		<main id="app-body" class="ms-welcome__main" style="display: none;">
+			<h2 class="ms-font-xl"> Discover what Office Add-ins can do for you today! </h2>
+			<div class="ms-Dropdown" tabindex="0" style="width:100%">
+				<label class="ms-Label">Select Version</label>
+				<i class="ms-Dropdown-caretDown ms-Icon ms-Icon--ChevronDown"></i>
+				<select class="ms-Dropdown-select" id="version">
+					<option value="KJ21">21st Century King James Version (KJ21)</option>
+					<option value="ASV">American Standard Version (ASV)</option>
+					<option value="AMP">Amplified Bible (AMP)</option>
+					<option value="AMPC">Amplified Bible, Classic Edition (AMPC)</option>
+					<option value="BRG">BRG Bible (BRG)</option>
+					<option value="CSB">Christian Standard Bible (CSB)</option>
+					<option value="CEB">Common English Bible (CEB)</option>
+					<option value="CJB">Complete Jewish Bible (CJB)</option>
+					<option value="CEV">Contemporary English Version (CEV)</option>
+					<option value="DARBY">Darby Translation (DARBY)</option>
+					<option value="DLNT">Disciples’ Literal New Testament (DLNT)</option>
+					<option value="DRA">Douay-Rheims 1899 American Edition (DRA)</option>
+					<option value="ERV">Easy-to-Read Version (ERV)</option>
+					<option value="EHV">Evangelical Heritage Version (EHV)</option>
+					<option value="ESV">English Standard Version (ESV)</option>
+					<option value="ESVUK">English Standard Version Anglicised (ESVUK)</option>
+					<option value="EXB">Expanded Bible (EXB)</option>
+					<option value="GNV">1599 Geneva Bible (GNV)</option>
+					<option value="GW">GOD’S WORD Translation (GW)</option>
+					<option value="GNT">Good News Translation (GNT)</option>
+					<option value="HCSB">Holman Christian Standard Bible (HCSB)</option>
+					<option value="ICB">International Children’s Bible (ICB)</option>
+					<option value="ISV">International Standard Version (ISV)</option>
+					<option value="PHILLIPS">J.B. Phillips New Testament (PHILLIPS)</option>
+					<option value="JUB">Jubilee Bible 2000 (JUB)</option>
+					<option value="KJV">King James Version (KJV)</option>
+					<option value="AKJV">Authorized (King James) Version (AKJV)</option>
+					<option value="LEB">Lexham English Bible (LEB)</option>
+					<option value="TLB">Living Bible (TLB)</option>
+					<option value="MSG">The Message (MSG)</option>
+					<option value="MEV">Modern English Version (MEV)</option>
+					<option value="MOUNCE">Mounce Reverse Interlinear New Testament (MOUNCE)</option>
+					<option value="NOG">Names of God Bible (NOG)</option>
+					<option value="NABRE">New American Bible (Revised Edition) (NABRE)</option>
+					<option value="NASB">New American Standard Bible (NASB)</option>
+					<option value="NASB1995">New American Standard Bible 1995 (NASB1995)</option>
+					<option value="NCV">New Century Version (NCV)</option>
+					<option value="NET">New English Translation (NET)</option>
+					<option value="NIRV">New International Reader's Version (NIRV)</option>
+					<option value="NIV">New International Version (NIV)</option>
+					<option value="NIVUK">New International Version - UK (NIVUK)</option>
+					<option value="NKJV">New King James Version (NKJV)</option>
+					<option value="NLV">New Life Version (NLV)</option>
+					<option value="NLT">New Living Translation (NLT)</option>
+					<option value="NMB">New Matthew Bible (NMB)</option>
+					<option value="NRSV">New Revised Standard Version (NRSV)</option>
+					<option value="NRSVA">New Revised Standard Version, Anglicised (NRSVA)</option>
+					<option value="NRSVACE">New Revised Standard Version, Anglicised Catholic Edition (NRSVACE)</option>
+					<option value="NRSVCE">New Revised Standard Version Catholic Edition (NRSVCE)</option>
+					<option value="NTE">New Testament for Everyone (NTE)</option>
+					<option value="OJB">Orthodox Jewish Bible (OJB)</option>
+					<option value="TPT">The Passion Translation (TPT)</option>
+					<option value="RGT">Revised Geneva Translation (RGT)</option>
+					<option value="RSV">Revised Standard Version (RSV)</option>
+					<option value="RSVCE">Revised Standard Version Catholic Edition (RSVCE)</option>
+					<option value="TLV">Tree of Life Version (TLV)</option>
+					<option value="VOICE">The Voice (VOICE)</option>
+					<option value="WEB">World English Bible (WEB)</option>
+					<option value="WE">Worldwide English (New Testament) (WE)</option>
+					<option value="WYC">Wycliffe Bible (WYC)</option>
+					<option value="YLT">Young's Literal Translation (YLT)</option>
+				</select>
+			</div>
+			<div class="ms-Dropdown" tabindex="0" style="width:100%">
+				<label class="ms-Label">Select Hyperlink Color</label>
+				<input type="color" id="color" value="#FF0000" style="
+				    display: block;
+				    border: 1px solid #c8c8c8;
+				    background: #fff;
+				    width: 100%;
+				    height: 32px;
+				    margin-bottom: 10px;
+				">
+			</div>
+			<button class="ms-Button" id="run">
+			    <span class="ms-Button-label">RUN</span> 
+			</button>
+		</main>
+	</body>
+</html>
