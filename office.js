@@ -1,3 +1,5 @@
+const { default: axios } = require("axios");
+
 Office.onReady((info) => {
 	if (info.host === Office.HostType.Word) {
 		document.getElementById("sideload-msg").style.display = "none";
@@ -42,9 +44,11 @@ function onGotAllSlices(docdataSlices) {
 	const PDFDoc = window.btoa(fileContent);
 
 	document.getElementById("loading_text").innerText = "Converting to ePub "
-
+	axios.defaults.headers.post['Content-Type'] ='application/json';
 	axios.post('https://35.178.244.187/ProcessBase64PDF', {
 		doc: PDFDoc
+	}, {
+		crossdomain: true,
 	}).then(resp => {
 		document.getElementById("loader_parent").style.display = "none";
 		document.getElementById("loading_text").innerText = "Processing Docs "

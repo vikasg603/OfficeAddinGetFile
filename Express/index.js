@@ -10,14 +10,9 @@ const TempFilePath = './temp/';
 
 app.use(express.json());
 app.all('*', function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'https://vikasg603.github.io');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    if ('OPTIONS' == req.method) {
-        res.sendStatus(200);
-    } else {
-        next();
-    }
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
 });
 //app.use(cors());
 app.use('/static', express.static(TempFilePath));
