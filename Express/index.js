@@ -5,7 +5,7 @@ const fs = require('fs/promises');
 const uuid = require('uuid');
 const { Calibre } = require('node-calibre');
 const cors = require('cors');
-const TempFilePath = './temp/';
+const TempFilePath = __dirname + '/temp/';
 
 app.use(cors({origin: "https://vikasg603.github.io", preflightContinue: false}));
 app.use(express.json({limit: '50mb'}));
