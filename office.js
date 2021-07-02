@@ -44,7 +44,7 @@ function onGotAllSlices(docdataSlices) {
 
 	document.getElementById("loading_text").innerText = "Converting to ePub "
 	axios.defaults.headers.post['Content-Type'] ='application/json';
-	axios.post('https://35.178.244.187/ProcessBase64PDF', {
+	axios.post('https://3.8.40.182/ProcessBase64PDF', {
 		doc: PDFDoc
 	}).then(resp => {
 		document.getElementById("loader_parent").style.display = "none";
