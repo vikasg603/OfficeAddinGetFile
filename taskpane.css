@@ -74,8 +74,22 @@ ul {
 	color: #005a9e;
 	cursor: pointer;
 }
+
+@keyframes dotAnimation {
+  0% {
+    content: ".";
+  }
+  50% {
+    content: '..';
+  }
+  100% {
+    content: "...";
+  }
+}
+
 .loader-parent {
     background-color: #eeebe9;
+	flex-direction: 'column';
     position: absolute;
     top: 0;
     display: flex;
@@ -83,6 +97,9 @@ ul {
     height: 100vh;
     align-items: center;
     justify-content: center;
+}
+.text-loading::after {
+	animation: dotAnimation 2s linear infinite alternate;
 }
 .loader {
     position: absolute;

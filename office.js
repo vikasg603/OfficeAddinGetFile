@@ -41,7 +41,7 @@ function onGotAllSlices(docdataSlices) {
 		fileContent += String.fromCharCode(docdata[j]);
 	}
 
-	console.log(window.btoa(fileContent));
+	const PDFDoc = window.btoa(fileContent);
 
 	// Now all the file content is stored in 'fileContent' variable,
 	// you can do something with it, such as print, fax...
