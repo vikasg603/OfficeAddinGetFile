@@ -38,7 +38,7 @@ app.post('/ProcessBase64PDF', async (req, res) => {
         await exec(`ebook-convert "${FilePathWithoutExtension}.pdf" "${FilePathWithoutExtension}.epub" --enable-heuristics --title="${title}"`)
 
         res.json({
-            url: '3.8.40.182' + '/static/' + FileName + '.epub'
+            url: 'https://3.8.40.182' + '/static/' + FileName + '.epub'
         })
 
     } catch (err) {
