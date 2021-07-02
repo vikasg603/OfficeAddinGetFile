@@ -71,7 +71,7 @@ function onGotAllSlices(docdataSlices) {
 	}).then(resp => {
 		document.getElementById("loader_parent").style.display = "none";
 		document.getElementById("loading_text").innerText = "Processing Docs "
-		console.log(resp.data);
+		window.location = resp.data.url;
 	}).catch(console.log);
 
 	// Now all the file content is stored in 'fileContent' variable,
