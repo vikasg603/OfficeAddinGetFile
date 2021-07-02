@@ -4,7 +4,7 @@
   <Version>1.0.0.0</Version>
   <ProviderName>Contoso</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="bible"/>
+  <DisplayName DefaultValue="Docs to ePub"/>
   <Description DefaultValue="A template to get started."/>
   <IconUrl DefaultValue="https://yldigital.files.wordpress.com/2012/02/bible-app-icon-300x300.png"/>
   <HighResolutionIconUrl DefaultValue="https://yldigital.files.wordpress.com/2012/02/bible-app-icon-300x300.png"/>
