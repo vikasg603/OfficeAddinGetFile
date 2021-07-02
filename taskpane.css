@@ -111,6 +111,7 @@ ul {
     justify-content: center;
 }
 .text-loading::after {
+	content: ".";
 	animation: dotAnimation 2s linear infinite alternate;
 }
 .loader {
