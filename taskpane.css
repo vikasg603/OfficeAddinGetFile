@@ -91,11 +91,14 @@ ul {
   0% {
     content: ".";
   }
-  50% {
+  20% {
     content: "..";
   }
-  100% {
+  70% {
     content: "...";
+  }
+  100% {
+    content: ".";
   }
 }
 
@@ -112,7 +115,7 @@ ul {
 }
 .text-loading::after {
 	content: ".";
-	animation: dotAnimation 2s linear infinite alternate;
+	animation: dotAnimation 0.7s linear infinite alternate;
 }
 .loader {
     position: absolute;
