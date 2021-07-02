@@ -80,7 +80,7 @@ ul {
     content: ".";
   }
   50% {
-    content: '..';
+    content: "..";
   }
   100% {
     content: "...";
@@ -89,7 +89,7 @@ ul {
 
 .loader-parent {
     background-color: #eeebe9;
-	flex-direction: 'column';
+	flex-direction: column;
     position: absolute;
     top: 0;
     display: flex;
