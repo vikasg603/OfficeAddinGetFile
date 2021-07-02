@@ -32,8 +32,7 @@ app.post('/ProcessBase64PDF', async (req, res) => {
 
         await fs.writeFile(FilePathWithoutExtension + '.pdf', base64Doc, 'base64');
 
-        console.log(`ebook-convert ${FilePathWithoutExtension}.pdf ${FilePathWithoutExtension}.epub --enable-heuristics --title=${title}`);
-        await exec(`ebook-convert ${FilePathWithoutExtension}.pdf ${FilePathWithoutExtension}.epub --enable-heuristics --title=${title}`)
+        await exec(`ebook-convert "${FilePathWithoutExtension}.pdf" "${FilePathWithoutExtension}.epub" --enable-heuristics --title="${title}"`)
 
         res.json({ path: FilePathWithoutExtension + '.epub' });
 
