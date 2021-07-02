@@ -7,11 +7,12 @@ const { Calibre } = require('node-calibre');
 const cors = require('cors');
 const TempFilePath = './temp/';
 
-app.use((req, resp) => {
+app.use((req, res) => {
     console.log(req.headers);
+    next();
 });
 
-app.use(cors({origin: "https://vikasg603.github.io", preflightContinue: false}));
+//app.use(cors({origin: "https://vikasg603.github.io", preflightContinue: false}));
 app.use(express.json());
 
 app.use('/static', express.static(TempFilePath));
