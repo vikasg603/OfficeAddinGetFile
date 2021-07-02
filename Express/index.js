@@ -9,11 +9,15 @@ const { Calibre } = require('node-calibre');
 const TempFilePath = './temp/';
 
 app.use(express.json());
-app.use(function (req, res, next) {
+app.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Origin', 'https://vikasg603.github.io');
-    res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    next();
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    if ('OPTIONS' == req.method) {
+        res.sendStatus(200);
+    } else {
+        next();
+    }
 });
 //app.use(cors());
 app.use('/static', express.static(TempFilePath));
