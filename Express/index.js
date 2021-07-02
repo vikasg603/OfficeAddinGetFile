@@ -7,7 +7,7 @@ const { Calibre } = require('node-calibre');
 const cors = require('cors');
 const TempFilePath = './temp/';
 
-app.use((req, res) => {
+app.use((req, res, next) => {
     console.log(req.headers);
     next();
 });
