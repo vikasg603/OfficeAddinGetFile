@@ -13,7 +13,6 @@ app.use(express.json({limit: '50mb'}));
 app.use('/static', express.static(TempFilePath));
 
 app.post('/ProcessBase64PDF', async (req, res) => {
-    console.log(req);
     try {
 
         if (!req.body.doc) {
@@ -36,6 +35,7 @@ app.post('/ProcessBase64PDF', async (req, res) => {
         res.json({ path: newFile });
 
     } catch (err) {
+        console.log(err);
         res.status(503).json({
             Error: "Internal server error"
         });
