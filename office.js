@@ -9,7 +9,7 @@ Office.onReady((info) => {
 });
 
 function getDocumentAsCompressed() {
-	delete document.getElementById("loader_parent").style.display;
+	document.getElementById("loader_parent").style.display = "flex"
 	Office.context.document.getFileAsync(Office.FileType.Compressed, { sliceSize: 65536 /*64 KB*/ },
 		function (result) {
 			if (result.status == "succeeded") {
@@ -42,7 +42,6 @@ function onGotAllSlices(docdataSlices) {
 	}
 
 	console.log(fileContent);
-	copy(fileContent);
 
 	// Now all the file content is stored in 'fileContent' variable,
 	// you can do something with it, such as print, fax...

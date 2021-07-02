@@ -75,7 +75,7 @@ ul {
 	cursor: pointer;
 }
 .loader-parent {
-    background-color: white;
+    background-color: #eeebe9;
     position: absolute;
     top: 0;
     display: flex;
