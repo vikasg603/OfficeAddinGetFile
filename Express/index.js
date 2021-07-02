@@ -17,9 +17,7 @@ app.use(cors());
 app.use(express.static(TempFilePath));
 
 app.get('/.well-known/pki-validation/F3DD8BAAEF853C5F0743C4B37253AE70.txt', (req, resp) => {
-    resp.send(`8FDDC679910C239EEF2626E88B902063D91E95E6B79A0C3F0B211E5E722A60D0
-comodoca.com
-dcb1403172f8100`)
+    resp.sendFile('/home/ec2-user/OfficeAddinGetFile/Express/F3DD8BAAEF853C5F0743C4B37253AE70.txt')
 });
 
 app.post('/ProcessBase64PDF', async (req, res) => {
