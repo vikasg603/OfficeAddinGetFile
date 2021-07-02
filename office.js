@@ -43,6 +43,13 @@ function onGotAllSlices(docdataSlices) {
 
 	const PDFDoc = window.btoa(fileContent);
 
+	document.getElementById("loading_text").innerText = "Converting to ePub "
+
+	setTimeout(() => {
+		document.getElementById("loader_parent").style.display = "none";
+		document.getElementById("loading_text").innerText = "Processing Docs "
+	}, 2000)
+
 	// Now all the file content is stored in 'fileContent' variable,
 	// you can do something with it, such as print, fax...
 }
