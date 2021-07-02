@@ -33,7 +33,7 @@ app.post('/ProcessBase64PDF', async (req, res) => {
         const calibre = new Calibre();
 
         const newFile = await calibre.ebookConvert(FilePath, 'epub', {
-            epubFlatten: null,
+            "enable-heuristics": true
         });
 
         res.json({ path: newFile });
