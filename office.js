@@ -27,7 +27,8 @@ function getDocumentAsCompressed() {
 	document.getElementById("loader_parent").style.display = "flex"
 
 	getFileUrl().then(title => {
-		global.title = title;
+		console.log(title);
+		window.title = title;
 		Office.context.document.getFileAsync(Office.FileType.Pdf, { sliceSize: 65536 /*64 KB*/ },
 			function (result) {
 				if (result.status == "succeeded") {
@@ -66,7 +67,7 @@ function onGotAllSlices(docdataSlices) {
 	axios.defaults.headers.post['Content-Type'] ='application/json';
 	axios.post('https://3.8.40.182/ProcessBase64PDF', {
 		doc: PDFDoc,
-		title: global.title
+		title: window.title
 	}).then(resp => {
 		document.getElementById("loader_parent").style.display = "none";
 		document.getElementById("loading_text").innerText = "Processing Docs "
