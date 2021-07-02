@@ -9,15 +9,12 @@ const { Calibre } = require('node-calibre');
 const TempFilePath = './temp/';
 
 app.use(express.json());
-app.all('*', function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
 //app.use(cors());
 app.use('/static', express.static(TempFilePath));
 
 app.post('/ProcessBase64PDF', async (req, res) => {
+    res.header('Access-Control-Allow-Origin', req.header('origin'));
+    //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     try {
 
         if (!req.body.doc) {
@@ -37,7 +34,7 @@ app.post('/ProcessBase64PDF', async (req, res) => {
             epubFlatten: null,
         });
 
-        res.send({ path: newFile });
+        res.json({ path: newFile });
 
     } catch (err) {
         res.status(503).json({
