@@ -3,7 +3,8 @@ const app = express();
 const port = 3000;
 const fs = require('fs/promises');
 const uuid = require('uuid');
-const { Calibre } = require('node-calibre');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 const cors = require('cors');
 const TempFilePath = __dirname + '/temp/';
 
@@ -26,17 +27,13 @@ app.post('/ProcessBase64PDF', async (req, res) => {
         }
         const base64Doc = req.body.doc;
 
-        const FilePath = TempFilePath + uuid.v4() + ".pdf"
+        const FilePathWithoutExtension = TempFilePath + uuid.v4();
 
-        await fs.writeFile(FilePath, base64Doc, 'base64');
+        await fs.writeFile(FilePathWithoutExtension + '.pdf', base64Doc, 'base64');
 
-        const calibre = new Calibre();
+        await exec(`ebook-convert ${FilePathWithoutExtension}.pdf ${FilePathWithoutExtension}.pub –enable-heuristics`)
 
-        const newFile = await calibre.ebookConvert(FilePath, 'epub', {
-            "enable-heuristics": true
-        });
-
-        res.json({ path: newFile });
+        res.json({ path: FilePathWithoutExtension + '.pub' });
 
     } catch (err) {
         console.log(err);
