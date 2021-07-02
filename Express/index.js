@@ -10,7 +10,7 @@ const TempFilePath = './temp/';
 
 app.use(express.json());
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', req.header('origin'));
+    res.header('Access-Control-Allow-Origin', 'https://vikasg603.github.io');
     next();
 });
 app.use(cors());
