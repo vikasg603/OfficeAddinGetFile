@@ -9,7 +9,7 @@ const cors = require('cors');
 const TempFilePath = './temp/';
 
 app.use(express.json());
-app.use(cors({origin: "https://vikasg603.github.io"}));
+app.use(cors({origin: "*", preflightContinue: false}));
 app.use('/static', express.static(TempFilePath));
 
 app.post('/ProcessBase64PDF', async (req, res) => {
