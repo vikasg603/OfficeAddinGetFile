@@ -1,4 +1,3 @@
-const { default: axios } = require("axios");
 
 Office.onReady((info) => {
 	if (info.host === Office.HostType.Word) {
