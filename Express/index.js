@@ -9,13 +9,17 @@ const cors = require('cors');
 const TempFilePath = './temp/';
 
 app.use(express.json());
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', req.header('origin'));
+    next();
+});
 app.use(cors());
 app.use(express.static(TempFilePath));
 
 app.post('/ProcessBase64PDF', async (req, res) => {
     try {
 
-        if(!req.body.doc) {
+        if (!req.body.doc) {
             res.status(400).json({
                 Error: "No doc found"
             });
@@ -32,9 +36,9 @@ app.post('/ProcessBase64PDF', async (req, res) => {
             epubFlatten: null,
         });
 
-        res.send({path: newFile});
+        res.send({ path: newFile });
 
-    } catch(err) {
+    } catch (err) {
         res.status(503).json({
             Error: "Internal server error"
         });
