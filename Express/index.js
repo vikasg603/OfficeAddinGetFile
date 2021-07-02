@@ -4,17 +4,15 @@ const port = 3000;
 const fs = require('fs/promises');
 const uuid = require('uuid');
 const { Calibre } = require('node-calibre');
-//const cors = require('cors');
+const cors = require('cors');
 
 const TempFilePath = './temp/';
 
 app.use(express.json());
-//app.use(cors());
+app.use(cors({origin: "https://vikasg603.github.io"}));
 app.use('/static', express.static(TempFilePath));
 
 app.post('/ProcessBase64PDF', async (req, res) => {
-    res.header('Access-Control-Allow-Origin', req.header('origin'));
-    //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     try {
 
         if (!req.body.doc) {
