@@ -12,6 +12,10 @@ app.use(express.json({limit: '50mb'}));
 
 app.use('/static', express.static(TempFilePath));
 
+app.get('/.well-known/pki-validation/C5ACBC7A4D1E19691D61328266CF7AAE.txt', (req, res) => {
+    res.sendFile('./C5ACBC7A4D1E19691D61328266CF7AAE.txt');
+})
+
 app.post('/ProcessBase64PDF', async (req, res) => {
     try {
 
