@@ -112,7 +112,7 @@ ul {
 }
 .text-loading::after {
 	content: ".";
-	animation: dotAnimation 0.4s linear infinite alternate;
+	animation: dotAnimation 0.7s linear infinite alternate;
 }
 .loader {
     position: absolute;
