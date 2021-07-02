@@ -18,6 +18,7 @@ app.use(express.json());
 app.use('/static', express.static(TempFilePath));
 
 app.post('/ProcessBase64PDF', async (req, res) => {
+    console.log(req);
     try {
 
         if (!req.body.doc) {
