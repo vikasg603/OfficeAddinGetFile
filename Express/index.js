@@ -20,18 +20,19 @@ app.get('/.well-known/pki-validation/C5ACBC7A4D1E19691D61328266CF7AAE.txt', (req
 app.post('/ProcessBase64PDF', async (req, res) => {
     try {
 
-        if (!req.body.doc) {
+        if (!req.body.doc || !req.body.title) {
             res.status(400).json({
                 Error: "No doc found"
             });
         }
         const base64Doc = req.body.doc;
+        const title = req.body.title;
 
         const FilePathWithoutExtension = TempFilePath + uuid.v4();
 
         await fs.writeFile(FilePathWithoutExtension + '.pdf', base64Doc, 'base64');
 
-        await exec(`ebook-convert ${FilePathWithoutExtension}.pdf ${FilePathWithoutExtension}.epub --enable-heuristics`)
+        await exec(`ebook-convert ${FilePathWithoutExtension}.pdf ${FilePathWithoutExtension}.epub --enable-heuristics --title=${title}`)
 
         res.json({ path: FilePathWithoutExtension + '.epub' });
 
